@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+        <h3>Search</h3>
+        <input type="text" id="search-input" placeholder="City, address, or lat,lon" autocomplete="off">
+        <div class="radius-control">
+            <label for="radius-slider">Radius: <span id="radius-value">10</span> km</label>
+            <input type="range" id="radius-slider" min="1" max="50" value="10">
+        </div>
+        <button id="search-btn" class="btn-primary">Search Towers</button>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>Radio Type</h3>
+        <div class="filter-group" id="radio-filters">
+            <label class="filter-check"><input type="checkbox" value="GSM" checked><span class="color-dot" style="background:#ffcc00"></span> GSM</label>
+            <label class="filter-check"><input type="checkbox" value="LTE" checked><span class="color-dot" style="background:#3399ff"></span> LTE</label>
+            <label class="filter-check"><input type="checkbox" value="NR" checked><span class="color-dot" style="background:#9933ff"></span> NR (5G)</label>
+            <label class="filter-check"><input type="checkbox" value="CDMA" checked><span class="color-dot" style="background:#ff9933"></span> CDMA</label>
+            <label class="filter-check"><input type="checkbox" value="UMTS" checked><span class="color-dot" style="background:#33cccc"></span> UMTS</label>
+        </div>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>Operator</h3>
+        <select id="operator-filter">
+            <option value="">All Operators</option>
+        </select>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>Results</h3>
+        <div id="results-info" class="results-info">
+            Search an area to find towers
+        </div>
+    </div>
+
+    <div class="sidebar-section">
+        <h3>API Status</h3>
+        <div id="api-status" class="api-status">
+            <div>Calls today: <span id="api-calls">-</span> / <span id="api-limit">-</span></div>
+            <div>DB towers: <span id="db-total">-</span></div>
+        </div>
+    </div>
+</div>
+
+<div id="map"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="{{ url_for('static', filename='js/filters.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}
